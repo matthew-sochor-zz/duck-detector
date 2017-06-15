@@ -5,7 +5,7 @@ variable "ami" {
 
 variable "spot_price" {
 	type = "string"
-	default = "0.20"
+	default = "0.40"
 }
 
 variable "profile" {
