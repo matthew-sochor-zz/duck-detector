@@ -8,9 +8,11 @@ plotDir = $(data)/plots
 
 dirs = $(data) $(rawDir) $(test) $(train) $(plotDir)
 
-s3dir = what-is-my-fish-images
-testS3key = testfilter/ 
-trainS3key = trainfilter/
+s3dir = duck-detector-images
+testS3key = test/
+trainS3key = train/
+
+percent = 0.8
 
 # Modeling
 
@@ -46,3 +48,23 @@ connect:
 
 stop:
 	terraform destroy
+
+# Split data
+split:
+	rm -rf $(test)
+	rm -rf $(train)
+	mkdir -p $(test)
+	mkdir -p $(train)
+	mkdir -p $(test)/human
+	mkdir -p $(train)/human
+	mkdir -p $(test)/duck
+	mkdir -p $(train)/duck
+	mkdir -p $(test)/pooduck
+	mkdir -p $(train)/pooduck
+	python split.py human ../data/ $(test) $(train) $(percent)
+	python split.py duck ../data/ $(test) $(train) $(percent)
+	python split.py pooduck ../data/ $(test) $(train) $(percent)
+
+pushSplits:
+	aws s3 sync $(train) s3://$(s3dir)/train 
+	aws s3 sync $(test) s3://$(s3dir)/test 
