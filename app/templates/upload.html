@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Upload A Pic{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+  $(document).on('change', ':file', function() {
+    $('#pic-form').submit();
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="color: white">
+  <center><h4>Upload or Take a Photo Now</h4></center>
+  <p class="text-center">
+    I use your photo to see if you are human,
+    <br>
+    or more likely if you are a duck.
+    <br>
+    Worst yet, you could be a poop duck.  Yikes.
+  </p>
+</div>
+
+  <div class="container-fluid">
+    
+    <div class="form-group" align="middle">
+      <br>
+      <br>
+      <label class="btn btn-default">
+        <form id="pic-form" enctype="multipart/form-data" method="post" name="pic-form">
+          <input id="pic-input" type="file" accept="image/*" name="pic-input" style="display:none">
+            <span style="font-weight:bold;text-align:center"> 
+                Upload or Take Photo
+            </span>
+            <center><img class="img-responsive" src="{{ art_url }}" alt="Camera Icon" align="middle" height="75" width="100"></center>
+          <input id="pic-submit" type="submit" value="Upload" style="display:none">
+        </form>
+      </label>
+      <br>
+      <br>
+      <br>
+    </div>
+
+  </div>
+  
+{{ super() }}
+{% endblock %}

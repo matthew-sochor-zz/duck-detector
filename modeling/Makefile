@@ -12,7 +12,7 @@ s3dir = duck-detector-images
 testS3key = test/
 trainS3key = train/
 
-percent = 0.9
+percent = 0.8
 
 # Modeling
 

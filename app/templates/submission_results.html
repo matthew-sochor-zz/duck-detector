@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="color: white">
+  <div class="row">
+
+  	<h3>{{ results_heading }}</h3>
+  </div>
+  <div class="row">
+  	<h4>Our algorithm indicates you caught: </h4>
+  </div>
+  <div class="row">
+  	<div class="col-sm-6">
+  	  <div class="row">
+  	  		<center><h2><b>{{ species_pred }} ({{ confidence }}%)</b></h2></center>
+  	  </div>
+  	  <div class="row">
+	  		<center>
+	  			<img class="img-responsive med-icon" src="{{ url_for('cdn_pic_sm', pic_id=pic_id) }}" alt="User Submitted Photo">
+	  		</center>
+  	  </div>
+	 </div>
+  </div>
+
+</div>
+
+{{ super() }}
+{% endblock %}
