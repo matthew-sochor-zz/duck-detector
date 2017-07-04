@@ -28,7 +28,7 @@ if [[ "$2" == "--start" ]]; then
         sudo rm -f /etc/nginx/sites-enabled/default
         sudo rm -f /etc/nginx/sites-enabled/default
         sudo touch /etc/nginx/sites-available/app
-        sudo cp /home/fishioai/fish.io.ai/app/nginx/app.conf /etc/nginx/sites-available/app
+        sudo cp /home/ubuntu/duck-detector/app/nginx/app.conf /etc/nginx/sites-available/app
         sudo rm -f /etc/nginx/sites-enabled/app
         sudo ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled/app
         sudo service nginx restart
