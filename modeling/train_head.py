@@ -125,12 +125,12 @@ def train_model():
     model.summary()
 
     model.compile(optimizer=Adam(lr=float(os.environ.get("LOSS_RATE"))),
-                  loss='categorical_crossentropy',
-                  metrics=['categorical_accuracy'])
+                  loss='binary_crossentropy',
+                  metrics=['binary_accuracy'])
 
     model.summary()
-    filepath="data/models/" + model_name.split('.')[0] + "-weights-improvement-{epoch:02d}-{val_categorical_accuracy:.4f}.hdf5"
-    checkpoint = ModelCheckpoint(filepath, monitor='val_categorical_accuracy', verbose=1, save_best_only=True, mode='max')
+    filepath="data/models/" + model_name.split('.')[0] + "-weights-improvement-{epoch:02d}-{val_binary_accuracy:.4f}.hdf5"
+    checkpoint = ModelCheckpoint(filepath, monitor='val_binary_accuracy', verbose=1, save_best_only=True, mode='max')
     callbacks_list = [checkpoint]
     steps_per_epoch = (nbr_trn_samples // batch_size)
     validation_steps = (nbr_tst_samples // batch_size)
