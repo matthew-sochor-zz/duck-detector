@@ -7,7 +7,6 @@ import uuid
 
 import logging as log
 
-import pandas as pd
 import numpy as np
 
 from flask import Flask, redirect, render_template, request, url_for

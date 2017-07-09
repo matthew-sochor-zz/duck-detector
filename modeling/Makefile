@@ -61,9 +61,12 @@ split:
 	mkdir -p $(train)/duck
 	mkdir -p $(test)/pooduck
 	mkdir -p $(train)/pooduck
+	mkdir -p $(test)/lizard
+	mkdir -p $(train)/lizard
 	python split.py human ../data/ $(test) $(train) $(percent)
 	python split.py duck ../data/ $(test) $(train) $(percent)
 	python split.py pooduck ../data/ $(test) $(train) $(percent)
+	python split.py lizard ../data/ $(test) $(train) $(percent)
 
 pushSplits:
 	aws s3 sync $(train) s3://$(s3dir)/train 
